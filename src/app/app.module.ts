@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { EstimationPipe } from './@shared/estimation.pipe';
 import { TasksService } from './@shared/tasks.service';
 
 import { AppComponent } from './app.component';
@@ -11,7 +12,8 @@ import { TasksComponent } from './tasks/tasks/tasks.component';
   declarations: [
     AppComponent,
     TasksComponent,
-    CalendarComponent
+    CalendarComponent,
+    EstimationPipe
   ],
   imports: [
     BrowserModule,
