@@ -1,0 +1,64 @@
+<form [formGroup]="form">
+  <table class="table">
+    <thead>
+      <tr>
+        <th style="width: 30px; text-align: center">Priority</th>
+        <th style="width: 30px">Estimated</th>
+        <th style="width: 30px">Done</th>
+        <th>
+          Task
+          <button type="button" class="btn btn-sm float-end" (click)="addingTask = !addingTask">Add Task</button>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let task of (tasks$ | async)">
+        <td>{{ task.priority }}</td>
+        <td>{{ task.estimated }}</td>
+        <td>{{ task.done }}</td>
+        <td>{{ task.task }}</td>
+      </tr>
+      <tr
+        class="new-task-form"
+        *ngIf="!addingTask"
+        (click)="addingTask = !addingTask"
+      >
+        <td colspan="4">
+          <button class="btn btn-sm">Add Task</button>
+        </td>
+      </tr>
+      <tr class="new-task-form" *ngIf="addingTask">
+        <td>
+          <select class="form-select" formControlName="priority">
+            <option selected disabled></option>
+            <option value="1">High</option>
+            <option value="2">Medium</option>
+            <option value="3">Low</option>
+          </select>
+        </td>
+        <td>
+          <input type="number" class="form-control" formControlName="estimated"/>
+        </td>
+        <td>
+          <div class="h-100 d-flex justify-content-center align-items-center">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" formControlName="done"/>
+            </div>
+          </div>
+        </td>
+        <td>
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" formControlName="task"/>
+            <button
+              class="btn btn-outline-secondary"
+              type="button"
+              (click)="addTask()"
+            >
+              Add
+            </button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</form>
